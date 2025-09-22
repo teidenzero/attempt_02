@@ -1,0 +1,28 @@
+seed: 42
+device: cuda
+data:
+  frames_dir: data/sample_video
+  alpha_gt_dir: null
+  crop_size: [1024, 576]
+  batch_size: 2
+  num_workers: 2
+model:
+  in_channels: 4
+  base_widths: [64,128,256,512,1024]
+  norm: gn
+  act: silu
+optim:
+  lr: 3.0e-4
+  weight_decay: 1.0e-4
+  epochs: 2
+  warmup_steps: 50
+loss:
+  w_l1: 0.5
+  w_grad: 0.25
+  w_lap: 0.25
+  w_temp: 0.2
+  lap_levels: 3
+inference:
+  tile: [1024, 576]
+  overlap: 0.25
+  ema_strength: 0.8
